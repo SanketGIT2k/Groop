@@ -11,18 +11,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".groupChatActivity"></activity>
-        <activity android:name=".Update_profile" />
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".Main_page" />
-        <activity android:name=".OTP" />
-        <activity android:name=".signup_main" />
-        <activity android:name=".Main_Login_Page">
+        <activity android:name=".splashFinalActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".groupChatActivity" />
+        <activity android:name=".Update_profile" />
+        <activity android:name=".Main_Login_Page" />
+        <activity android:name=".OTP" />
+        <activity android:name=".signup_main" />
+        <activity android:name=".Main_page">
+
         </activity>
     </application>
 

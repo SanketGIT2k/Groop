@@ -1,6 +1,7 @@
 package com.example.groups_app;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -67,6 +69,18 @@ public class groupFrag extends Fragment {
 
 
         RetreiveAndDisplayGroup();
+
+        list_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                String currentGroupName = adapterView.getItemAtPosition(position).toString();
+
+                Intent groupChatIntent = new Intent(getContext(), groupChatActivity.class);
+                groupChatIntent.putExtra("groupName", currentGroupName);
+                startActivity(groupChatIntent);
+
+            }
+        });
     }
 
     private void RetreiveAndDisplayGroup() {
