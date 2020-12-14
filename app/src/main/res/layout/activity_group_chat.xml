@@ -7,7 +7,7 @@
     tools:context=".groupChatActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/group_chat_bar_toolbar"
+        android:id="@+id/group_chat_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorAccent"
@@ -18,7 +18,7 @@
         android:id="@+id/group_chat_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/group_chat_bar_toolbar"
+        android:layout_below="@+id/group_chat_toolbar"
         android:layout_above="@id/my_linear_layout">
         
         <LinearLayout
@@ -62,6 +62,7 @@
         </EditText>
         
         <ImageButton
+            android:id="@+id/send_message_button"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_send_24"

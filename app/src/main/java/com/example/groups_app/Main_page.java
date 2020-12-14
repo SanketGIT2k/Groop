@@ -44,31 +44,27 @@ public class Main_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_page_app);
 
-
-
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
         RootRef = FirebaseDatabase.getInstance().getReference();
 
         InitializeFields();
 
-        mToolbar = (Toolbar) findViewById(R.id.main_Toolbar);
-
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Groop");
 
-        mView_pager = (ViewPager) findViewById(R.id.main_tab_pager);
-        mtabAccessorAdapter = new tab_accessor(getSupportFragmentManager());
-        mView_pager.setAdapter(mtabAccessorAdapter);
-
-        mTabLayout = (TabLayout) findViewById(R.id.main_tabBar);
-        mTabLayout.setupWithViewPager(mView_pager);
 
 
 
     }
 
     private void InitializeFields() {
+        mView_pager = (ViewPager) findViewById(R.id.main_tab_pager);
+        mtabAccessorAdapter = new tab_accessor(getSupportFragmentManager());
+        mView_pager.setAdapter(mtabAccessorAdapter);
+        mTabLayout = (TabLayout) findViewById(R.id.main_tabBar);
+        mTabLayout.setupWithViewPager(mView_pager);
+        mToolbar = (Toolbar) findViewById(R.id.main_Toolbar);
 
     }
 
