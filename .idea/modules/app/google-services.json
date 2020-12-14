@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "349880263905",
+    "project_id": "groop-fb97e",
+    "storage_bucket": "groop-fb97e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:349880263905:android:9d3b5b6c5a5b591cc103a0",
+        "android_client_info": {
+          "package_name": "com.example.groups_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "349880263905-nrbha6ng02ucgj6h4uvespi6u0mk0nbu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.groups_app",
+            "certificate_hash": "c536842bbc0f5666ee170b47ec9b7e1e4d2094c5"
+          }
+        },
+        {
+          "client_id": "349880263905-nk24vis51g85ko6brt566edpu235bkp0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXm6fQIXRIoQ7BqHxM3FtbIx-hiKz7k58"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "349880263905-nk24vis51g85ko6brt566edpu235bkp0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

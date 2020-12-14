@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="false"
+    android:animationCache="false"
+    android:foregroundGravity="bottom"
+    tools:context=".chatFrag">
+
+    <ListView
+        android:id="@+id/group_list_view"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/group_floating_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fab_labelsPosition="left"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        app:fab_labelStyle="@style/LabelStyle">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/merge_group_floating_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="#03DAC5"
+            app:fab_size="mini"
+            app:fab_title="Merge Group"
+            >
+        </com.getbase.floatingactionbutton.FloatingActionButton>
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addGroup_floating_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="#03DAC5"
+            app:fab_size="mini"
+            app:fab_title="Add group"
+            >
+        </com.getbase.floatingactionbutton.FloatingActionButton>
+
+
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+
+
+</RelativeLayout>
