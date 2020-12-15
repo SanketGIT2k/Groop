@@ -68,7 +68,6 @@ public class Main_page extends AppCompatActivity {
 
     }
 
-    //VIDEO6
 
 
     @Override
@@ -117,7 +116,6 @@ public class Main_page extends AppCompatActivity {
         startActivity(UpdateProfileIntent);
         finish();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

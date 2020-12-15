@@ -1,9 +1,11 @@
 package com.example.groups_app;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.DocumentsContract;
 import android.text.TextUtils;
@@ -13,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.internal.Storage;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,6 +24,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.util.HashMap;
 
@@ -33,6 +41,9 @@ public class Update_profile extends AppCompatActivity {
     private String currenUserID;
     private FirebaseAuth mAuth;
     private DatabaseReference RootRef;
+    private StorageReference UserProfileImageRef;
+
+    private static final int GalleryPick = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +55,8 @@ public class Update_profile extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         currenUserID = mAuth.getCurrentUser().getUid();
         RootRef = FirebaseDatabase.getInstance().getReference();
+        UserProfileImageRef = FirebaseStorage.getInstance().getReference().child("Profile Images");
+
 
         UpdateUserProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +68,15 @@ public class Update_profile extends AppCompatActivity {
 
         RetrieveUserInformation();
 
+        UserProfilePicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent galleryIntent = new Intent();
+                galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+                galleryIntent.setType("image/*");
+                startActivityForResult(galleryIntent, GalleryPick );
+            }
+        });
 
     }
 
@@ -101,6 +123,67 @@ public class Update_profile extends AppCompatActivity {
         UpdateUsername = (EditText) findViewById(R.id.profile_username);
         UpdateUserstatus = (EditText) findViewById(R.id.profile_user_status);
         UserProfilePicture = (ImageView) findViewById(R.id.profile_picture);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == GalleryPick && resultCode == RESULT_OK && data !=null){
+            Uri ImageUri = data.getData();
+
+            CropImage.activity()
+                    .setGuidelines(CropImageView.Guidelines.ON)
+                    .setAspectRatio(1,1)
+                    .start(this);
+
+        }
+
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+
+            if (resultCode == RESULT_OK){
+                Uri resultUri = result.getUri();
+
+                StorageReference filePath = UserProfileImageRef.child(currenUserID + ".jpg");
+
+                filePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                        if (task.isSuccessful()){
+                            Toast.makeText(Update_profile.this, "Profile image uploaded successfully", Toast.LENGTH_SHORT).show();
+
+                            //final String downloadUrl = task.getResult().getDownloadUrl().toString;
+
+                           // RootRef.child("Users").child(currenUserID).child("Image")
+                             //       .setValue(downloadUrl).addOnCompleteListener(new OnCompleteListener<Void>() {
+                               // @Override
+                                //public void onComplete(@NonNull Task<Void> task) {
+                                 //   if (task.isSuccessful()){
+                                   ///     Toast.makeText(Update_profile.this, "Image Saved", Toast.LENGTH_SHORT).show();
+                                    //}
+
+                                    //else{
+                                      //  String message = task.getException().toString();
+                                        //Toast.makeText(Update_profile.this, "Error :" + message, Toast.LENGTH_SHORT).show();
+                                    //}
+
+                                //}
+                            //});
+
+
+                        }
+                        else{
+                            String message = task.getException().toString();
+                            Toast.makeText(Update_profile.this, "Error : " + message, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+            }
+
+        }
 
     }
 

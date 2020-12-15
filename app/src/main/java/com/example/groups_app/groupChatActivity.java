@@ -1,16 +1,7 @@
 package com.example.groups_app;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
-import android.app.ActionBar;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.Display;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -18,6 +9,10 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -154,7 +149,7 @@ public class groupChatActivity extends AppCompatActivity {
     private void InitializeFields() {
 
         //mToolbar = (Toolbar) findViewById(R.id.group_chat_toolbar);
-        //getSupportActionBar(mToolbar);
+        //setSupportActionBar(mToolbar);
         sendMesageButton = (ImageButton) findViewById(R.id.send_message_button);
         userMessageInput = (EditText) findViewById(R.id.input_group_message);
         mScrollView = (ScrollView) findViewById(R.id.group_chat_scroll_view);
